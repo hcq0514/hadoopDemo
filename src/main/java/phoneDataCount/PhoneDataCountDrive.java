@@ -1,8 +1,7 @@
-package mapReduce;
+package phoneDataCount;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
@@ -10,27 +9,29 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
+//统计每一个手机号耗费的总上行流量、下行流量、总流量
 
-public class WordCountDrive {
+public class PhoneDataCountDrive {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+
         // 1 获取job对象信息
         Configuration configuration = new Configuration();
         Job job = Job.getInstance(configuration);
 
         // 2 设置加载jar位置
-        job.setJarByClass(WordCountDrive.class);
+        job.setJarByClass(PhoneDataCountDrive.class);
 
         // 3 设置mapper和reducer的class类
-        job.setMapperClass(WordCountMapper.class);
-        job.setReducerClass(WordCountReduce.class);
+        job.setMapperClass(PhoneDataCountMapper.class);
+        job.setReducerClass(PhoneDataCountReduce.class);
 
         // 4 设置输出mapper的数据类型
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(IntWritable.class);
+        job.setMapOutputValueClass(PhoneDataEntity.class);
 
         // 5 设置最终数据输出的类型
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputValueClass(PhoneDataEntity.class);
 
         // 处理小文件
         job.setInputFormatClass(CombineTextInputFormat.class);
