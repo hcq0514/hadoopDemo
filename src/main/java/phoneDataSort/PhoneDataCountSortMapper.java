@@ -1,4 +1,4 @@
-package phone_data_sort;
+package phoneDataSort;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;

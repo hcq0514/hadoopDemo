@@ -1,4 +1,4 @@
-package phone_data_sort;
+package phoneDataSort;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
